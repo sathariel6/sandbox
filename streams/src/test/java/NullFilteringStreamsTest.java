@@ -7,7 +7,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class NullFilterringStreamsTest {
+class NullFilteringStreamsTest {
 
     private List<String> testList;
 
@@ -45,7 +45,7 @@ class NullFilterringStreamsTest {
         list.add("");
         list.add("France");
         list.add("UK");
-        list.add("\\ugly\\stuff\n\t\\e\r\t\\notevensurewhat'sthat\"");
+        list.add("\\ugly\\stuff\n\t\\e\r\t\\notEvenSure\"");
         list.add("USA");
         return list;
     }

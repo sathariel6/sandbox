@@ -5,14 +5,16 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class ConvertListToMapStreams {
+final class ConvertListToMapStreams {
 
-    public static Map<Integer, Car> converListToMap(List<Car> cars) {
+    private ConvertListToMapStreams() {}
+
+    public static Map<Integer, Car> convertListToMap(List<Car> cars) {
         validateInputNotNull(cars);
         return cars.stream().collect(Collectors.toMap(c -> c.getId(), c -> c));
     }
 
-    public static Map<Integer, Car> converListToMapUsingMethodReference(List<Car> cars) {
+    public static Map<Integer, Car> convertListToMapUsingMethodReference(List<Car> cars) {
         validateInputNotNull(cars);
         return cars.stream().collect(Collectors.toMap(Car::getId, Function.identity()));
     }

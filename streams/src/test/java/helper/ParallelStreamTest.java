@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParallelStreamTest {
+class ParallelStreamTest {
 
     @Test
     void testParallelStream() {

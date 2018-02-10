@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public final class NullFilteringStreams {
+final class NullFilteringStreams {
 
     private NullFilteringStreams() {
     }

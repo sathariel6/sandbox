@@ -18,7 +18,7 @@ class ConvertListToMapStreamsTest {
     @BeforeEach
     void setUp() {
         car = new Car.Builder().id(1).name("Porsche").type("Sports").build();
-        car2 = new Car.Builder().id(2).name("Renault").type("DontEvenKnow").build();
+        car2 = new Car.Builder().id(2).name("Renault").type("Don'tEvenKnow").build();
         car3 = new Car.Builder().id(3).name("Truck").type("Truck").build();
 
         cars = buildListOfCars();
@@ -26,30 +26,30 @@ class ConvertListToMapStreamsTest {
 
     @Test
     void listOfObjectsMapsToMap() {
-        Map<Integer, Car> mapOfCars = ConvertListToMapStreams.converListToMap(cars);
+        Map<Integer, Car> mapOfCars = ConvertListToMapStreams.convertListToMap(cars);
 
         assertEquals(expectedMap(), mapOfCars);
     }
 
     @Test
     void listOfObjectsMapsToMapUsingMethodReference() {
-        Map<Integer, Car> mapOfCars = ConvertListToMapStreams.converListToMapUsingMethodReference(cars);
+        Map<Integer, Car> mapOfCars = ConvertListToMapStreams.convertListToMapUsingMethodReference(cars);
 
         assertEquals(expectedMap(), mapOfCars);
     }
 
     @Test
-    void methodDoesntAllowPassingInNullList() {
+    void methodDoesNotAllowPassingInNullList() {
         cars = null;
-        assertThrows(IllegalArgumentException.class, () -> ConvertListToMapStreams.converListToMap(cars));
-        assertThrows(IllegalArgumentException.class, () -> ConvertListToMapStreams.converListToMapUsingMethodReference(cars));
+        assertThrows(IllegalArgumentException.class, () -> ConvertListToMapStreams.convertListToMap(cars));
+        assertThrows(IllegalArgumentException.class, () -> ConvertListToMapStreams.convertListToMapUsingMethodReference(cars));
     }
 
     @Test
     void mappingFailsForDuplicateKeys() {
         cars.add(new Car.Builder().id(3).name("Duplicate").build());
-        assertThrows(IllegalStateException.class, () -> ConvertListToMapStreams.converListToMap(cars));
-        assertThrows(IllegalStateException.class, () -> ConvertListToMapStreams.converListToMapUsingMethodReference(cars));
+        assertThrows(IllegalStateException.class, () -> ConvertListToMapStreams.convertListToMap(cars));
+        assertThrows(IllegalStateException.class, () -> ConvertListToMapStreams.convertListToMapUsingMethodReference(cars));
     }
 
     private Map<Integer, Car> expectedMap() {
@@ -62,7 +62,7 @@ class ConvertListToMapStreamsTest {
 
     private List<Car> buildListOfCars() {
         Car car = new Car.Builder().id(1).name("Porsche").type("Sports").build();
-        Car car2 = new Car.Builder().id(2).name("Renault").type("DontEvenKnow").build();
+        Car car2 = new Car.Builder().id(2).name("Renault").type("Don'tEvenKnow").build();
         Car car3 = new Car.Builder().id(3).name("Truck").type("Truck").build();
         List<Car> carsList = new ArrayList<>();
         carsList.add(car);
