@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -8,10 +9,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class NullFilterringStreamsTest {
 
+    private List<String> testList;
+
+    @BeforeEach
+    void setUp() {
+        testList = createATestListWithNulls();
+    }
+
     @Test
     void filteringStreamsForTheNullValuesLambdas() {
-        List<String> testList = createATestListWithNulls();
-
         List<?> resultList = NullFilteringStreams.filterNullValuesLambdas(testList);
 
         assertEquals(7, resultList.size());
@@ -19,8 +25,6 @@ class NullFilterringStreamsTest {
 
     @Test
     void filteringStreamsForTheNullValuesObjects() {
-        List<String> testList = createATestListWithNulls();
-
         List<?> resultList = NullFilteringStreams.filterNullValuesObjects(testList);
 
         assertEquals(7, resultList.size());
@@ -28,13 +32,13 @@ class NullFilterringStreamsTest {
 
     @Test
     void filteringShouldNotAcceptNullLists() {
-        List<String> nullList = null;
-        assertThrows(IllegalArgumentException.class, () -> NullFilteringStreams.filterNullValuesLambdas(nullList));
-        assertThrows(IllegalArgumentException.class, () -> NullFilteringStreams.filterNullValuesObjects(nullList));
+        testList = null;
+        assertThrows(IllegalArgumentException.class, () -> NullFilteringStreams.filterNullValuesLambdas(testList));
+        assertThrows(IllegalArgumentException.class, () -> NullFilteringStreams.filterNullValuesObjects(testList));
     }
 
     private List<String> createATestListWithNulls() {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         list.add("Poland");
         list.add(null);
         list.add("Germany");
