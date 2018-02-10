@@ -3,7 +3,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class NullFilterringStreamsTest {
 
@@ -13,7 +14,7 @@ class NullFilterringStreamsTest {
 
         List<?> resultList = NullFilteringStreams.filterNullValuesLambdas(testList);
 
-        assertEquals(7,resultList.size());
+        assertEquals(7, resultList.size());
     }
 
     @Test
@@ -22,7 +23,14 @@ class NullFilterringStreamsTest {
 
         List<?> resultList = NullFilteringStreams.filterNullValuesObjects(testList);
 
-        assertEquals(7,resultList.size());
+        assertEquals(7, resultList.size());
+    }
+
+    @Test
+    void filteringShouldNotAcceptNullLists() {
+        List<String> nullList = null;
+        assertThrows(IllegalArgumentException.class, () -> NullFilteringStreams.filterNullValuesLambdas(nullList));
+        assertThrows(IllegalArgumentException.class, () -> NullFilteringStreams.filterNullValuesObjects(nullList));
     }
 
     private List<String> createATestListWithNulls() {
